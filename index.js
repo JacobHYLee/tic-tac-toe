@@ -17,13 +17,26 @@ const gameOverArea = document.getElementById("game-over-area");
 const gameOverText = document.getElementById("game-over-text");
 const playAgain = document.getElementById("play-again");
 
-tiles.forEach((tile) => tile.addEventListener("click, tileClick"));
+tiles.forEach((tile) => tile.addEventListener("click", tileClick));
 
 function tileClick(event) {
-  if(gameOverArea.classList.contains('visible')) {
+  if (gameOverArea.classList.contains("visible")) {
     return;
   }
 
   const tile = event.target;
-  const tileNumber = tile.
+  const tileNumber = tile.dataset.index;
+  if (tile.innerText != "") {
+    return;
+  }
+
+  if (turn === playerx) {
+    tile.innerText = playerx;
+    boardState[tileNumber - 1] = playerx;
+    turn = playero;
+  } else {
+    tile.innerText = playero;
+    boardState[tileNumber - 1] = playero;
+    turn = playerx;
+  }
 }
