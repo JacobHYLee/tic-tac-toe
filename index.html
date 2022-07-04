@@ -1,38 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tic Tac Toe Wooo</title>
-    <link rel="stylesheet" href="index.css" />
-  </head>
 
-  <body>
-    <h1>Tic Tac Toe</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connect 4</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
 
-    <div id="board">
-      <div data-index="1" class="tile right-border bottom-border"></div>
-      <div data-index="2" class="tile right-border bottom-border"></div>
-      <div data-index="3" class="tile bottom-border"></div>
-      <div data-index="4" class="tile right-border bottom-border"></div>
-      <div data-index="5" class="tile right-border bottom-border"></div>
-      <div data-index="6" class="tile bottom-border"></div>
-      <div data-index="7" class="tile right-border"></div>
-      <div data-index="8" class="tile right-border"></div>
-      <div data-index="9" class="tile"></div>
-      <div id="strike" class="strike"></div>
-    </div>
+<body>
+  <h1>Connect 4</h1>
 
-    <div id="game-over-area" class="hidden">
-      <h2 id="game-over-text">Winner is X!</h2>
-      <button id="play-again">Play again!</button>
-    </div>
+  <div id="board">
+    <div data-index="1" class="tile right-border bottom-border"></div>
+    <div data-index="2" class="tile right-border bottom-border"></div>
+    <div data-index="3" class="tile right-border bottom-border"></div>
+    <div data-index="4" class="tile  bottom-border"></div>
+    <div data-index="5" class="tile right-border bottom-border"></div>
+    <div data-index="6" class="tile right-border bottom-border"></div>
+    <div data-index="7" class="tile right-border bottom-border"></div>
+    <div data-index="8" class="tile  bottom-border"></div>
+    <div data-index="9" class="tile right-border bottom-border"></div>
+    <div data-index="10" class="tile right-border bottom-border"></div>
+    <div data-index="11" class="tile right-border bottom-border"></div>
+    <div data-index="12" class="tile  bottom-border"></div>
+    <div data-index="13" class="tile right-border "></div>
+    <div data-index="14" class="tile right-border "></div>
+    <div data-index="15" class="tile right-border "></div>
+    <div data-index="16" class="tile"></div>
+    <div id="strike" class="strike"></div>
+  </div>
 
-    <div class="winning-message">
-      <div data-winning-message-text></div>
-    </div>
+  <div id="game-over-area" class="hidden">
+    <h2 id="game-over-text">Winner is X!</h2>
+    <button id="play-again">Play again!</button>
+  </div>
 
-    <script src="index.js"></script>
-  </body>
+  <div class="winning-message">
+    <div data-winning-message-text></div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+
 </html>
