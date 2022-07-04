@@ -35,8 +35,8 @@ h1 {
 
 #board {
   display: grid;
-  grid-template-columns: 100px 100px 100px;
-  grid-template-rows: 100px 100px 100px;
+  grid-template-columns: 100px 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px 100px;
   cursor: pointer;
   position: relative;
 }
@@ -57,37 +57,50 @@ h1 {
 .strike-row-1 {
   width: 100%;
   height: 4px;
-  top: 15%;
+  top: 11.5%;
 }
 
 .strike-row-2 {
   width: 100%;
   height: 4px;
-  top: 48%;
+  top: 36.5%;
 }
 
 .strike-row-3 {
   width: 100%;
   height: 4px;
-  top: 83%;
+  top: 61.5%;
+}
+
+
+.strike-row-4 {
+  width: 100%;
+  height: 4px;
+  top: 87%;
 }
 
 .strike-column-1 {
   height: 100%;
   width: 4px;
-  left: 15%;
+  left: 11.5%;
 }
 
 .strike-column-2 {
   height: 100%;
   width: 4px;
-  left: 48%;
+  left: 36.5%;
 }
 
 .strike-column-3 {
   height: 100%;
   width: 4px;
-  left: 83%;
+  left: 61.5%;
+}
+
+.strike-column-4 {
+  height: 100%;
+  width: 4px;
+  left: 87%;
 }
 
 .strike-diagonal-1 {

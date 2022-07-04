@@ -62,7 +62,9 @@ function tileClick(event) {
   setHoverText();
   checkWinner();
 
-  console.log("board state is", boardState);
+
+
+  console.log(boardState);
 }
 
 // so I'm guessing here you're tyring to do something like
@@ -72,11 +74,13 @@ function checkWinner() {
     const tileValue1 = boardState[combo[0] - 1];
     const tileValue2 = boardState[combo[1] - 1];
     const tileValue3 = boardState[combo[2] - 1];
+    const tileValue4 = boardState[combo[3] - 1];
 
     if (
       tileValue1 != null &&
       tileValue1 === tileValue2 &&
-      tileValue1 === tileValue3
+      tileValue1 === tileValue3 &&
+      tileValue3 === tileValue4
     ) {
       strike.classList.add(strikeClass);
       gameOverScreen(tileValue1);
@@ -113,19 +117,14 @@ function startNewGame() {
 }
 
 const winningCombinations = [
-  { combo: [1, 2, 3], strikeClass: "strike-row-1" },
-  { combo: [4, 5, 6], strikeClass: "strike-row-2" },
-  { combo: [7, 8, 9], strikeClass: "strike-row-3" },
-  { combo: [1, 4, 7], strikeClass: "strike-column-1" },
-  { combo: [2, 5, 8], strikeClass: "strike-column-2" },
-  { combo: [3, 6, 9], strikeClass: "strike-column-3" },
-  { combo: [1, 5, 9], strikeClass: "strike-diagonal-1" },
-  { combo: [3, 5, 7], strikeClass: "strike-diagonal-2" },
+  { combo: [1, 2, 3, 4], strikeClass: "strike-row-1" },
+  { combo: [5, 6, 7, 8], strikeClass: "strike-row-2" },
+  { combo: [9, 10, 11, 12], strikeClass: "strike-row-3" },
+  { combo: [13, 14, 15, 16], strikeClass: "strike-row-4" },
+  { combo: [1, 5, 9, 13], strikeClass: "strike-column-1" },
+  { combo: [2, 6, 10, 14], strikeClass: "strike-column-2" },
+  { combo: [3, 7, 11, 15], strikeClass: "strike-column-3" },
+  { combo: [4, 8, 12, 16], strikeClass: "strike-column-4" },
+  { combo: [4, 7, 10, 13], strikeClass: "strike-diagonal-2" },
+  { combo: [1, 6, 11, 16], strikeClass: "strike-diagonal-1" },
 ];
-
-//I wanted to do something like this at first
-//But I don't know how to call the grids in the if parameter properly
-
-if (boardState[0] === playerx) {
-  console.log("x is in grid 1");
-}
