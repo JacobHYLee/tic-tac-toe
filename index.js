@@ -60,14 +60,12 @@ function tileClick(event) {
   }
 
   setHoverText();
-  checkWinner();
-
-
+  checkWinner(); // we can change this to checkWinner(tileNumber)
 
   console.log(boardState);
 }
 
-// so I'm guessing here you're tyring to do something like
+// we can then pass in playedIndex from here, ex) function checkWinner(playedIndex)
 function checkWinner() {
   for (const winningCombination of winningCombinations) {
     const { combo, strikeClass } = winningCombination;

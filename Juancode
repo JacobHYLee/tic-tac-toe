@@ -1,0 +1,54 @@
+const GRID_SIZE = 4; //
+const boardState = []; // you already did this
+
+// floor of index / Grid-size always returns the row that the item is in
+const checkRow = (playedIndex) => {
+  const indexOfRow = Math.floor(playedIndex / GRID_SIZE);
+
+  // this basically gets row index and returns 4 elements from it ex(second row would be boardstate[4,5,6,7])
+  return isMatch(
+    boardState.slice(GRID_SIZE * indexOfRow, GRID_SIZE * indexOfRow + GRID_SIZE)
+  );
+  //^ same thing as
+  // const row = [];
+  // for(let i = 0; i < GRID_SIZE; i++) {
+  //     row.push(GRID_SIZE * indexOfRow + i)
+  // }
+  // return row;
+};
+
+// using %, the remainder of index % Grid-size is column
+// This returns one whole column
+const checkCol = (playedIndex) => {
+  const indexOfCol = playedIndex % GRID_SIZE;
+  const column = [];
+  for (let i = 0; i < GRID_SIZE; i++) {
+    column.push(boardState[i * GRID_SIZE + indexOfCol]);
+  }
+  return isMatch(column);
+};
+
+// This actually might not need playedIndex.
+// in a MxM grid, you will ALWAYS only check 2 lines at max for diag, and it might be cheaper to just calculate those 2 lines instead.
+// different way to check these
+const checkDiag = () => {
+  // can do this next time
+  const leftDiag = [],
+    rightDiag = [];
+  for (let i = 0; i < GRID_SIZE; i++) {
+    leftDiag.push((GRID_SIZE + 1) * i);
+    rightDiag.push((GRID_SIZE - 1) * (i + 1));
+  }
+
+  return isMatch(leftDiag) || isMatch(rightDiag);
+};
+
+const checkWinner = (playedIndex) => {
+  // optionally we can add the strike logic here too. can do that next time
+
+  // if any of these are true, winner check is easy. whosever turn it was wins.
+  return checkCol(playedIndex) || checkRow(playedIndex) || checkDiag();
+};
+
+// This just checks that for a given set of cells, every cell is exactly same value as first cell
+const isMatch = (array) => array.every((cell) => cell === array[0]);
