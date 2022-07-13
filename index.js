@@ -7,6 +7,7 @@ console.log("tiles", tiles);
 const playerx = "X";
 const playero = "O";
 let turn = playerx;
+const GRID_SIZE = 4;
 
 const boardState = Array(tiles.length);
 boardState.fill(null);
@@ -66,35 +67,67 @@ function tileClick(event) {
 }
 
 // we can then pass in playedIndex from here, ex) function checkWinner(playedIndex)
-function checkWinner() {
-  for (const winningCombination of winningCombinations) {
-    const { combo, strikeClass } = winningCombination;
-    const tileValue1 = boardState[combo[0] - 1];
-    const tileValue2 = boardState[combo[1] - 1];
-    const tileValue3 = boardState[combo[2] - 1];
-    const tileValue4 = boardState[combo[3] - 1];
+//------------------------
+const checkRow = (playedIndex) => {
+  const indexOfRow = Math.floor(playedIndex / GRID_SIZE);
+  return isMatch(
+    boardState.slice(GRID_SIZE * indexOfRow, GRID_SIZE * indexOfRow + GRID_SIZE)
+  );
+};
 
-    if (
-      tileValue1 != null &&
-      tileValue1 === tileValue2 &&
-      tileValue1 === tileValue3 &&
-      tileValue3 === tileValue4
-    ) {
-      strike.classList.add(strikeClass);
-      gameOverScreen(tileValue1);
-      return;
-    }
-    // my code
-    // Something similar to this where you're checking if all of
-    // them are of the same shape right
-    // winningCombination.combo.every((con) => con === winningCombination.combo[0]);
+const checkCol = (playedIndex) => {
+  const indexOfCol = playedIndex % GRID_SIZE;
+  const column = [];
+  for (let i = 0; i < GRID_SIZE; i++) {
+    column.push(boardState[i * GRID_SIZE + indexOfCol]);
+  }
+  return isMatch(column);
+};
+
+const checkDiag = () => {
+  const leftDiag = [],
+    rightDiag = [];
+  for (let i = 0; i < GRID_SIZE; i++) {
+    leftDiag.push((GRID_SIZE + 1) * i);
+    rightDiag.push((GRID_SIZE - 1) * (i + 1));
   }
 
-  const allTileFilledIn = boardState.every((tile) => tile !== null);
-  if (allTileFilledIn) {
-    gameOverScreen(null);
-  }
-}
+  return isMatch(leftDiag) || isMatch(rightDiag);
+};
+
+const checkWinner = (playedIndex) => {
+  return checkCol(playedIndex) || checkRow(playedIndex) || checkDiag();
+};
+const isMatch = (array) => array.every((cell) => cell === array[0]);
+// function checkWinner() {
+//   for (const winningCombination of winningCombinations) {
+//     const { combo, strikeClass } = winningCombination;
+//     const tileValue1 = boardState[combo[0] - 1];
+//     const tileValue2 = boardState[combo[1] - 1];
+//     const tileValue3 = boardState[combo[2] - 1];
+//     const tileValue4 = boardState[combo[3] - 1];
+
+//     if (
+//       tileValue1 != null &&
+//       tileValue1 === tileValue2 &&
+//       tileValue1 === tileValue3 &&
+//       tileValue3 === tileValue4
+//     ) {
+//       strike.classList.add(strikeClass);
+//       gameOverScreen(tileValue1);
+//       return;
+//     }
+//     // my code
+//     // Something similar to this where you're checking if all of
+//     // them are of the same shape right
+//     // winningCombination.combo.every((con) => con === winningCombination.combo[0]);
+//   }
+
+//   const allTileFilledIn = boardState.every((tile) => tile !== null);
+//   if (allTileFilledIn) {
+//     gameOverScreen(null);
+//   }
+// }
 
 function gameOverScreen(winnerText) {
   let text = "Draw!";
